@@ -4,19 +4,13 @@
 #include <math.h>
 
 #include "func.h"
+#include "struct.h"
 
 #define max 10
 
 int next = 0;
 
-typedef struct
-{
-  int value;
-} Array;
-
 Array Values[max];
-
-void clear();
 
 void create();
 void delete();
@@ -31,11 +25,11 @@ int main()
     clear();
     printf("\n Bubble Sort");
     printf("\n ----------------------------------");
-    printf("\n  1 - Create record.");
-    printf("\n  2 - Delete record.");
-    printf("\n  3 - List records.");
-    printf("\n  4 - Sort records.");
-    printf("\n  5 - Exit program.");
+    printf("\n  1 - Create.");
+    printf("\n  2 - Delete");
+    printf("\n  3 - List.");
+    printf("\n  4 - Sort.");
+    printf("\n  5 - Exit.");
     printf("\n ----------------------------------");
     printf("\n Choose an option: ");
     scanf("%d", &option);
@@ -48,27 +42,19 @@ int main()
       continue;
     }
 
-    system("clear");
+    clear();
     switch (option)
     {
     case 1:
-      printf("\n Create record");
-      printf("\n ----------------------------------");
       create();
       break;
     case 2:
-      printf("\n Remove record");
-      printf("\n ----------------------------------");
       delete ();
       break;
     case 3:
-      printf("\n List records");
-      printf("\n ----------------------------------");
       list();
       break;
     case 4:
-      printf("\n Sort records");
-      printf("\n ----------------------------------");
       sort();
       break;
     case 5:
@@ -84,9 +70,11 @@ int main()
 
 void create()
 {
+  printf("\n Create a new record.");
+  printf("\n ----------------------------------");
   if (next == max)
   {
-    printf("\n Full list.");
+    printf("\n The list is full, delete some records to create new ones.");
     return;
   }
 
@@ -96,19 +84,21 @@ void create()
   fflush(stdin);
   Values[next].value = value;
   next++;
-  printf("\n Record added!");
+  printf("\n Record created!");
 }
 
 void delete()
 {
+  printf("\n Delete a record.");
+  printf("\n ----------------------------------");
   if (next == 0)
   {
-    printf("\n Empty list.");
+    printf("\n The list is empty, create some records to delete them.");
     return;
   }
 
   int value;
-  printf("\n Input value to remove: ");
+  printf("\n Input value to delete: ");
   scanf("%d", &value);
   fflush(stdin);
   for (int i = 0; i < next; i++)
@@ -120,7 +110,7 @@ void delete()
       {
         Values[ind].value = Values[ind + 1].value;
       }
-      printf("\n Record removed!");
+      printf("\n Record deleted!");
       break;
     }
   }
@@ -128,9 +118,11 @@ void delete()
 
 void list()
 {
+  printf("\n List all records.");
+  printf("\n ----------------------------------");
   if (next == 0)
   {
-    printf("\n Empty list.");
+    printf("\n The list is empty, create some records to list them.");
     return;
   }
 
@@ -144,6 +136,14 @@ void list()
 
 void sort()
 {
+  printf("\n Sort all records.");
+  printf("\n ----------------------------------");
+  if (next == 0)
+  {
+    printf("\n The list is empty, create some records to sort them.");
+    return;
+  }
+
   Array copy[next];
   Array aux;
 
